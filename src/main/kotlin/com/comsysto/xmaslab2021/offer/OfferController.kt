@@ -10,7 +10,7 @@ class OfferController(private val offers: OfferService) {
 
     @PutMapping("/{offerId}")
     fun createOffer(@PathVariable offerId: String, @RequestBody offerCreation: OfferCreationModel){
-        offers.saveOffer(Offer(offerId, offerCreation.description, offerCreation.location))
+        offers.saveOffer(Offer(offerId, offerCreation.description, offerCreation.location, offerCreation.price, offerCreation.stock))
     }
 
     @GetMapping
