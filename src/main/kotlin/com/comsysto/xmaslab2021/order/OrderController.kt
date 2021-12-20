@@ -10,7 +10,8 @@ class OrderController(private val orders: OrderService) {
 
     @PostMapping
     fun createOrder(@RequestBody orderCreation: OrderCreationModel){
-        orders.saveOrder(Order(null, orderCreation.offerId, orderCreation.deliveryLocation, orderCreation.amount))
+        val order: Order = Order(null, orderCreation.offerId, orderCreation.deliveryLocation, orderCreation.amount)
+        orders.saveOrder(order)
     }
 
     @GetMapping

@@ -5,6 +5,7 @@ import java.math.BigDecimal
 import javax.persistence.*
 
 @Entity
+@Table(name="orders")
 data class Order(
         @Id @GeneratedValue(strategy = GenerationType.AUTO) val orderId: Long ?,
         val offerId: String,
