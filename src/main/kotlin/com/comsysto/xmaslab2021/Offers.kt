@@ -7,21 +7,30 @@ import org.springframework.web.bind.annotation.*
 import javax.persistence.Entity
 import javax.persistence.Id
 
+
+// --- Domain ----
 @Entity
 data class Offer(@Id val offerId: String, val description: String)
 
+// --- Database Repositories ---
 @Repository
 interface OfferRepository : JpaRepository<Offer, String>
 
+
+
+// --- Services ---
 @Service
 class OfferService(private val offers: OfferRepository) {
-    fun allOffers(): List<Offer> {
-        return offers.findAll()
-    }
+    fun allOffers(): List<Offer> = offers.findAll()
+    fun saveOffer(offer: Offer) = offers.save(offer)
+}
 
-    fun saveOffer(offer: Offer){
-        offers.save(offer)
-    }
+
+// --- Rest ---
+
+open class OfferCreationModel (val description: String)
+class OfferModel(val id: String, description: String) : OfferCreationModel(description) {
+    constructor(offer: Offer) : this(offer.offerId, offer.description)
 }
 
 @RestController
@@ -29,10 +38,10 @@ class OfferService(private val offers: OfferRepository) {
 class OfferController(private val offers: OfferService) {
 
     @PutMapping("/{offerId}")
-    fun createOffer(@PathVariable offerId: String, @RequestBody offerDescription: String){
-        offers.saveOffer(Offer(offerId, offerDescription))
+    fun createOffer(@PathVariable offerId: String, @RequestBody offerCreation: OfferCreationModel){
+        offers.saveOffer(Offer(offerId, offerCreation.description))
     }
 
     @GetMapping
-    fun getAll(): List<Offer> = offers.allOffers()
+    fun getAll(): List<OfferModel> = offers.allOffers().map { o -> OfferModel(o) }
 }
