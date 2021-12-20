@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	kotlin("jvm") version "1.6.0"
 	kotlin("plugin.spring") version "1.6.0"
+	kotlin("plugin.jpa") version "1.6.0"
 }
 
 group = "com.comsysto"
@@ -16,6 +17,10 @@ repositories {
 }
 
 dependencies {
+
+	runtimeOnly("com.h2database:h2")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
