@@ -1,6 +1,6 @@
 package com.comsysto.xmaslab2021.offer.dto
 
-import com.comsysto.xmaslab2021.Location
+import com.comsysto.xmaslab2021.util.Location
 import com.comsysto.xmaslab2021.offer.Offer
 import java.math.BigDecimal
 

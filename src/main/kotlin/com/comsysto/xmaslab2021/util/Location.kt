@@ -1,4 +1,4 @@
-package com.comsysto.xmaslab2021
+package com.comsysto.xmaslab2021.util
 
 import javax.persistence.Embeddable
 
