@@ -1,4 +1,4 @@
-package com.comsysto.xmaslab2021
+package com.comsysto.xmaslab2021.healthcheck
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
