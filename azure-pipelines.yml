@@ -26,11 +26,11 @@ steps:
 
 - task: Docker@2
   inputs:
-    containerRegistry: acr-connection
+    containerRegistry: '5d9877d8-1bd2-4f7d-af5b-ad150279affe'
     command: 'login'
 - task: Docker@2
   inputs:
-    containerRegistry: acr-connection
-    repository: xmaslabcr.azurecr.io/xmas
+    containerRegistry: '5d9877d8-1bd2-4f7d-af5b-ad150279affe'
+    repository: xmas
     command: build
   displayName: ‘Docker image build’
