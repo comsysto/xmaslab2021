@@ -21,3 +21,9 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'bootBuildImage'
+- task: Docker@2
+  inputs:
+    containerRegistry: ‘XmasLabCR’
+    repository: ‘xmas’
+    command: ‘push’
+  displayName: ‘Docker image push’
