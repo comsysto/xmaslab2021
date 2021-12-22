@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- main
+- dev
 
 pool:
   vmImage: ubuntu-latest
@@ -23,7 +23,7 @@ steps:
     tasks: 'build'
 - task: Docker@2
   inputs:
-    containerRegistry: acr-connection
-    repository: xmas
+    containerRegistry: xmasregistryconnection
+    repository: xlab
     command: buildAndPush
   displayName: ‘Docker image push’
