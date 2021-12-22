@@ -32,5 +32,5 @@ steps:
   inputs:
     containerRegistry: acr-connection
     repository: xmas
-    command: buildAndPush
-  displayName: ‘Docker image push’
+    command: build
+  displayName: ‘Docker image build’
