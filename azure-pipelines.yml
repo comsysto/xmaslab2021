@@ -8,7 +8,6 @@ trigger:
 - dev
 
 pool: 
-  name: Pipeline Pool
   vmImage: ubuntu-latest
 
 steps:
