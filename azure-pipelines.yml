@@ -7,7 +7,8 @@
 trigger:
 - dev
 
-pool:
+pool: 
+  name: Pipeline Pool
   vmImage: ubuntu-latest
 
 steps:
