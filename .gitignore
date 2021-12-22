@@ -4,4 +4,6 @@ build/
 .gradle/
 /out/
 
-.terraform/
+.terraform
+*terraform.*
+
