@@ -24,7 +24,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistryType: Azure Container Registry
-    containerRegistry: ‘xmaslabcr.azurecr.io’
+    containerRegistry: ‘XmasLabCR’
     repository: ‘xmas’
-    command: ‘push’
+    command: ‘buildAndPush’
   displayName: ‘Docker image push’
