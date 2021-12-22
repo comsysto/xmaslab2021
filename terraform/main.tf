@@ -16,12 +16,12 @@ provider "azurerm" {
 
 # Create a resource group
 resource "azurerm_resource_group" "xlabrg" {
-  name     = "XmasLab2021DingsBums"
-  location = "West Europe"
+  name     = var.rg_name
+  location = var.region
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                = "XmasLabCRDingsBums"
+  name                = var.cr_name
   resource_group_name = azurerm_resource_group.xlabrg.name
   location            = azurerm_resource_group.xlabrg.location
   sku                 = "Standard"
