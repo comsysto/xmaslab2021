@@ -10,7 +10,7 @@ class HealthCheckController {
         const val HEALTHY_MESSAGE = "I am healthy!"
     }
 
-    @GetMapping("/healthCheck")
+    @GetMapping("/healthcheck")
     fun healthCheck(): String {
         return HEALTHY_MESSAGE
     }
