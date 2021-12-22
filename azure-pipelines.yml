@@ -22,13 +22,15 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'build'
+
+
 - task: Docker@2
   inputs:
-    containerRegistry: 'xmasregistryconnection'
+    containerRegistry: acr-connection
     command: 'login'
 - task: Docker@2
   inputs:
-    containerRegistry: xmasregistryconnection
-    repository: xlab
+    containerRegistry: acr-connection
+    repository: xmas
     command: buildAndPush
   displayName: ‘Docker image push’
