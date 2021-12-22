@@ -23,14 +23,9 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'build'
 
-
 - task: Docker@2
   inputs:
-    containerRegistry: '5d9877d8-1bd2-4f7d-af5b-ad150279affe'
-    command: 'login'
-- task: Docker@2
-  inputs:
-    containerRegistry: '5d9877d8-1bd2-4f7d-af5b-ad150279affe'
+    containerRegistry: '3c3c7f5e-dc1b-408a-a89b-cae1f5eb89fe'
     repository: xmas
     command: build
   displayName: ‘Docker image build’
