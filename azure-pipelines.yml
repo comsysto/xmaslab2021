@@ -23,7 +23,7 @@ steps:
     tasks: 'bootBuildImage --imageName=xmaslabcr.azurecr.io/xmas'
 - task: Docker@2
   inputs:
-    containerRegistry: ‘xmaslabcr’
+    containerRegistry: ‘Azure Container Registry Connection’
     repository: ‘xmas’
     command: ‘push’
   displayName: ‘Docker image push’
