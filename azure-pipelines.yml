@@ -20,10 +20,9 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'bootBuildImage --imageName=xmaslabcr.azurecr.io/xmas'
+    tasks: 'build'
 - task: Docker@2
   inputs:
-    containerRegistryType: Azure Container Registry
     containerRegistry: ‘Azure Container Registry Connection’
     repository: ‘xmas’
     command: ‘buildAndPush’
