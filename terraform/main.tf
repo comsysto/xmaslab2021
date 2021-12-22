@@ -15,15 +15,58 @@ provider "azurerm" {
 }
 
 # Create a resource group
-resource "azurerm_resource_group" "example" {
-  name     = "example-resources"
+resource "azurerm_resource_group" "xlabrg" {
+  name     = "XmasLab2021"
   location = "West Europe"
 }
 
-# Create a virtual network within the resource group
-resource "azurerm_virtual_network" "example" {
-  name                = "example-network"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
-  address_space       = ["10.0.0.0/16"]
+resource "azurerm_container_registry" "acr" {
+  name                = "XmasLabCR"
+  resource_group_name = azurerm_resource_group.xlabrg.name
+  location            = azurerm_resource_group.xlabrg.location
+  sku                 = "Standard"
+  admin_enabled       = false
+}
+
+resource "azurerm_kubernetes_cluster" "k8s" {
+  name                = var.cluster_name
+  location            = azurerm_resource_group.k8s.location
+  resource_group_name = azurerm_resource_group.k8s.name
+  dns_prefix          = var.dns_prefix
+
+  linux_profile {
+    admin_username = "ubuntu"
+
+    ssh_key {
+      key_data = file(var.ssh_public_key)
+    }
+  }
+
+
+  default_node_pool {
+    name       = "agentpool"
+    node_count = var.agent_count
+    vm_size    = "Standard_D2_v2"
+  }
+
+  service_principal {
+    client_id     = var.client_id
+    client_secret = var.client_secret
+  }
+
+  addon_profile {
+    oms_agent {
+      enabled                    = true
+      log_analytics_workspace_id = azurerm_log_analytics_workspace.test.id
+    }
+  }
+
+  network_profile {
+    load_balancer_sku = "Standard"
+    network_plugin    = "kubenet"
+  }
+
+  tags = {
+    Environment = "Development"
+  }
 }
