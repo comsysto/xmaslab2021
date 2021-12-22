@@ -21,3 +21,9 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'build'
+- task: Docker@2
+  inputs:
+    containerRegistry: acr-connection
+    repository: xmas
+    command: buildAndPush
+  displayName: ‘Docker image push’
