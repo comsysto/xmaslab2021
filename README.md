@@ -14,7 +14,7 @@ Tools that might help for local testing:
 
 ## Deployment
 
-To have this application running on a Kubernetes cluster on Azure, you have to create an image, upload it to a Container Registory on Azure, then deploy it to the Kubernetes cluster.
+To have this application running on a Kubernetes cluster on Azure, you have to create an image, upload it to a Container Registry on Azure, then deploy it to the Kubernetes cluster.
 
 ### Create Docker Image
 
@@ -52,9 +52,10 @@ to the registry from your command prompt (More [here](https://docs.microsoft.com
     az login
     az acr login --name XMasContainerRegistry
 
+Where XMasContainerRegistry is the name of your Container Registry.
 
 #### Create an alias of the image
-Use docker tag to create an alias of the image with the fully qualified path to your registry. This example specifies the samples namespace to avoid clutter in the root of the registry.
+Use docker tag to create an alias of the image with the fully qualified path to your registry.
 
     docker tag xmas xmascontainerregistry.azurecr.io/xmas
 
@@ -91,7 +92,22 @@ The output of the command should look like:
     }
 
 
-Now you can create a Kubernetes service on Azure Portal and assign this principal to it.
-
+Now you can create a Kubernetes Service on Azure Portal and assign this principal to it.
+( In our Lab we didn't manage to assign this service principal)
 ### Deploy Application Image to AKS
 
+You can ask KubeCtl to perform the deployment to your kubernetes cluster. You have to be logged in to Azure and to the Container registry (As described above), then you can run the following command:
+
+    kubectl apply -f deployment.yaml
+
+Create a service to expose the image on port 8080
+    
+    kubectl expose deployment xmas --type=LoadBalancer --port=8080
+
+
+## This might be useful
+
+To generate Kubernetes manifest file (usually deployment.yaml and service.yaml), you can run the following command:
+
+    kubectl create deployment xmas --image=xmas:latest --dry-run=client -o=yaml > deployment.yaml
+    kubectl create service xmas --image=xmas:latest --dry-run=client -o=yaml > deployment.yaml
