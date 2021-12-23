@@ -10,7 +10,7 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '21decb1f-27f8-4b70-a96e-5f2495a08a40'
+  dockerRegistryServiceConnection: XMas Azure Resources
   imageRepository: 'xmas'
   containerRegistry: 'xmaslabcr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
