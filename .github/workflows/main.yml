@@ -1,0 +1,8 @@
+- id: bump
+  uses: zwaldowski/match-label-action@v1
+  with:
+    allowed: major,minor,patch
+- uses: zwaldowski/semver-release-action@v1
+  with:
+    bump: ${{ steps.bump.outputs.match }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
